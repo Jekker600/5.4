@@ -1,5 +1,7 @@
 FROM ubuntu:latest
-RUN apt update && install unzip wget nodejs npm -y
+ENV TZ=Europe/Samara
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apt update -y && apt install unzip wget nodejs npm -y
 RUN wget https://github.com/simplicitesoftware/nodejs-demo/archive/refs/heads/master.zip
 RUN unzip -p master.zip
 WORKDIR /nodejs-demo-master
